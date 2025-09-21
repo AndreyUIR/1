@@ -1,1 +1,101 @@
-
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои проекты</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .project-title {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .project-description {
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+        footer {
+            margin-top: 50px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 650px) {
+            .projects {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Мои проекты</h1>
+        
+        <div class="projects">
+            <a href="1/" class="project-card">
+                <div class="project-icon">🐱</div>
+                <h2 class="project-title">Обязанности котов</h2>
+                <p class="project-description">Весёлый сайт о обязанностях котов в доме</p>
+            </a>
+            
+            <a href="2/" class="project-card">
+                <div class="project-icon">🏛️</div>
+                <h2 class="project-title">Минск</h2>
+                <p class="project-description">Информационный сайт о столице Беларуси</p>
+            </a>
+        </div>
+        
+        <footer>
+            <p>© 2025 - Все права защищены</p>
+        </footer>
+    </div>
+</body>
+</html>
