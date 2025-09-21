@@ -1,1 +1,708 @@
-
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Минск - столица Беларуси</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3d70 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 5px solid #da251d;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><text x="50%" y="50%" font-size="80" text-anchor="middle" dominant-baseline="middle">⚪</text></svg>');
+            opacity: 0.1;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .header-decoration {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 15px;
+        }
+        
+        .header-decoration span {
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+        
+        nav {
+            background-color: #2a5298;
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        nav li {
+            margin: 0 5px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #da251d;
+            color: white;
+        }
+        
+        section {
+            padding: 50px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        section:nth-child(even) {
+            background-color: #e8f1f9;
+        }
+        
+        h2 {
+            color: #1e3d70;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #1e3d70, #da251d);
+            border-radius: 2px;
+        }
+        
+        .section-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.2rem;
+            color: #444;
+        }
+        
+        .history-content, .attractions-content, .symbols-content, .map-content, .news-content, .current-content, .extra-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .attraction-item {
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .attraction-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.5s;
+        }
+        
+        .attraction-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .symbols-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .symbol {
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .symbol img {
+            max-width: 220px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            border: 2px solid #1e3d70;
+        }
+        
+        .map-container {
+            text-align: center;
+        }
+        
+        .map-image {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .news-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .news-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .news-item:hover .news-image img {
+            transform: scale(1.1);
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-date {
+            color: #da251d;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        
+        .news-item h3 {
+            color: #1e3d70;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .current-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .info-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+        
+        .info-box i {
+            font-size: 3rem;
+            color: #1e3d70;
+            margin-bottom: 20px;
+        }
+        
+        .info-box h3 {
+            color: #1e3d70;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .statistics {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #da251d;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #1e3d70 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            color: #ffcc00;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: #da251d;
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+            
+            nav li {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .section-intro {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .highlight {
+            color: #da251d;
+            font-weight: 600;
+        }
+        
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #da251d;
+            padding-left: 20px;
+            margin: 25px 0;
+            color: #555;
+        }
+        
+        .author {
+            text-align: right;
+            font-weight: 600;
+            color: #1e3d70;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Минск - столица Беларуси</h1>
+            <p>Город-герой с богатой историей и динамично развивающимся настоящим</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#history" class="active">История</a></li>
+                <li><a href="#attractions">Достопримечательности</a></li>
+                <li><a href="#symbols">Символы</a></li>
+                <li><a href="#map">Расположение</a></li>
+                <li><a href="#news">Новости</a></li>
+                <li><a href="#current">Город сегодня</a></li>
+                <li><a href="#extra">Интересное</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="history">
+            <h2>История города</h2>
+            <p class="section-intro">Минск — один из старейших городов Европы с более чем 950-летней историей, прошедший путь от небольшого княжеского поселения до современной столицы.</p>
+            
+            <div class="history-content">
+                <div class="card">
+                    <h3>Основание и ранняя история</h3>
+                    <p>Минск впервые упоминается в <span class="highlight">"Повести временных лет" в 1067 году</span> под названием Меньск. Город возник на возвышенных берегах рек Свислочь и Немига как крепость Полоцкого княжества.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Великое Княжество Литовское и Речь Посполитая</h3>
+                    <p>С XIV века Минск входит в состав Великого Княжества Литовского, а с 1569 года — Речи Посполитой. В <span class="highlight">1499 году</span> город получает Магдебургское право, что способствует его экономическому развитию.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>В составе Российской империи</h3>
+                    <p>После второго раздела Речи Посполитой в <span class="highlight">1793 году</span> Минск вошёл в состав Российской империи и стал центром Минской губернии. Город значительно вырос и развился в XIX веке.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Советский период</h3>
+                    <p>В 1919 году Минск становится столицей Белорусской ССР. Город сильно пострадал во время Великой Отечественной войны, но был восстановлен в послевоенные годы.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Современность</h3>
+                    <p>С <span class="highlight">1991 года</span> Минск — столица независимой Республики Беларусь. Сегодня это крупный политический, экономический и культурный центр с населением почти 2 миллиона человек.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="attractions">
+            <h2>Достопримечательности</h2>
+            <p class="section-intro">Минск сочетает в себе богатое историческое наследие и современную архитектуру, предлагая гостям множество интересных мест для посещения.</p>
+            
+            <div class="attractions-grid">
+                <div class="attraction-item card">
+                    <h3>Троицкое предместье</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/%D0%97%D0%B0%D0%BC%D0%B0%D0%BB%D1%91%D1%9E%D0%BA%D1%96_%D0%9C%D1%96%D0%BD%D1%81%D0%BA%D0%B0_35.jpg" alt="Троицкое предместье">
+                    <p>Исторический район с отреставрированными зданиями XIX века, где сегодня расположены музеи, сувенирные магазины и кафе. Является одним из самых живописных мест города.</p>
+                </div>
+                
+                <div class="attraction-item card">
+                    <h3>Национальная библиотека</h3>
+                    <img src="https://cdn.ruwiki.ru/ruwiki/files/e/e6/%D0%9D%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D0%B1%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA%D0%B0_%D0%91%D0%B5%D0%BB%D0%B0%D1%80%D1%83%D1%81%D0%B8.jpg" alt="Национальная библиотека">
+                    <p>Уникальное архитектурное сооружение в форме ромбокубооктаэдра высотой 73 метра. На крыше оборудована смотровая площадка, с которой открывается панорамный вид на город.</p>
+                </div>
+                
+                <div class="attraction-item card">
+                    <h3>Остров слёз</h3>
+                    <img src="https://tn.fishki.net/26/upload/post/2018/02/15/2513017/06aced02bfe10fd8db74b02dd65d351f.jpg" alt="Остров слёз">
+                    <p>Мемориальный комплекс, посвящённый белорусским воинам-интернационалистам, погибшим в Афганистане. Расположен на искусственном острове на реке Свислочь.</p>
+                </div>
+                
+                <div class="attraction-item card">
+                    <h3>Площадь Независимости</h3>
+                    <img src="https://3pulse.com/uploads/photo/01/34/11/2016/07/10/8b1a48daeb.jpg" alt="Площадь Независимости">
+                    <p>Крупнейшая площадь Беларуси и одна из самых больших в Европе. Здесь расположены Дом правительства, Белорусский государственный университет и Красный костёл.</p>
+                </div>
+                 <div class="attraction-item card">
+                    <h3>Стела Минск-город герой</h3>
+                    <img src="https://avatars.mds.yandex.net/i?id=72959deddcdf56551c2f16ab011f6279_l-8240464-images-thumbs&n=13" alt="Стела Минск-город герой">
+                    <p>Стелла "Минск – город-герой" – это символ стойкости белорусской нации, возвышающийся над Белорусским государственным музеем истории Великой Отечественной войны.</p>
+                </div>
+                <div class="attraction-item card">
+                    <h3>Минские ворота</h3>
+                    <img src="https://avatars.mds.yandex.net/i?id=f15cd798705032928899e35511ca753c_l-5355392-images-thumbs&n=13"Минские ворота">
+                    <p>Ворота Минска» — архитектурный комплекс на Привокзальной площади в Минске, представляющий собой два 11-этажных здания-башни по углам 5-этажных домов, расположенных симметрично относительно поперечной оси площади. </p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="symbols">
+            <h2>Символы города</h2>
+            <p class="section-intro">Минск имеет богатую символику, отражающую его историю, культуру и значение как столицы Беларуси.</p>
+            
+            <div class="symbols-container">
+                <div class="symbol card">
+                    <h3>Герб</h3>
+                    <img src="https://minsknews.by/wp-content/uploads/2017/10/gerb-copy.jpg?no_webp=1" alt="Герб Минска">
+                    <p>На гербе г. Минска — Вознесение Богородицы, которую возносят в небо два летящих ангела, а над ними два херувима. На гербе изображена Дева Мария. </p>
+                </div>
+                
+                <div class="symbol card">
+                    <h3>Флаг</h3>
+                    <img src="https://i.ytimg.com/vi/nO28nqMngSE/maxresdefault.jpg" alt="Флаг Минска">
+                    <p>Флаг города Минска представляет собой прямоугольное полотнище голубого цвета с отношением ширины к длине как 2:3. В центре лицевой стороны полотнища располагается изображение гербовой эмблемы города Минска.</p>
+                </div>
+                
+                <div class="symbol card">
+                    <h3>Памятник Винсенту Дунину-Марцинкевичу и Станиславу Манюшка</h3>
+                    <img src="https://yandex-images.clstorage.net/BYRG56084/9f9855P9TBtD/WqzP9Xn9sA2MyTnLzTfT7nXhIq9-FLs73nQoJYioDuIQDRIwFk-0eLdgIe0cOOKD1P6w0zfdt0dbqQbjWU1qV2p4fgBo_bTYmO0tG3hGwg_xATPPv-OoKZ0i-6cqzkyAQ6yTtANKgOnS1Lc6HRtkpPOKJ7YAWEQEOcuHoG4_u-P9GCunWe1DL86rfTmOBcZep6GDrc6AmfsNAMh2q0_twlHcMJSQGkB9knZECJvapIfBGCVVclq154jIFfNcPGqyLql5Rln9ce4Pus26vmQkfZfS4H2fE9mbb6J65aiezcGRbBHlwqpyXcHkZGj4iGVkwGq0d0JIxXVrWAZSXizZYq3KCAQp73MPvmovqJ7WJy8UcOJ8fPCL6o1SOcepb-yzQRwhNIFKMD4wF8f5iGoXN6BoNoZiKSVVyQoF8n1NOPKdOmtnWg4yLSxqPGnONFefRxDh7o8SaUvMIarlav2sAEMfoRZhq7EOM_QUqWhZh6Yiq9e2cCgEl8vKdiNfb8hSfmhKl4rcoE1dSF2J3tb3n3fBk32fo1t6npPI1XqMvFNTnqL2gUqTHiIHNCt4mIc24Qv1R1I7BCdoyATjDRxLcw2qW6eITLB9Pskvie2WVX22slP_fPMaqJ1g-oWLHu7QoYxRNdEZ809gJ7aJ-QnF5BLY58Tjm0RXaepF8eyPCHNd6Bu1eM9hbz-ofGmcRJaNFOOjb4_DCcveMEp3-UyeI9BNMgeDeAO90kc2iEtpV_Zyq1U0wLlllitoB5PfTxti_zr4p4u84T8dez8KHNf3zYXhEqwOAQu6vGPI1svcL4NwHVL0AIniT5Pl94h6GZeUwdtURoJ7tUX7m0bgbt8bUP07K7cIPMGf7Ei9e6-VhD-HAPBejbIaSa-TejXLTa4zk33S99HYwR0RhLRZannXdYCK9vTA6tXVS1nUwSw9azDsiUh3OBzzH83a_2tthXSMtRNwTc6xCalvoHi1E" alt="Памятник основателям Минска">
+                    <p>3 сентября 2016 года в сквере у Ратуши на площади Свободы в Минске торжественно открыли памятник двум выдающимся белорусским культурным деятелям - композитору Станиславу Монюшко и драматургу Винценту Дунину-Марцинкевичу.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="map">
+            <h2>Расположение на карте</h2>
+            <p class="section-intro">Минск расположен в центральной части Беларуси и является крупнейшим транспортным узлом страны.</p>
+            
+            <div class="map-container card">
+                <p>Минск находится практически в географическом центре Беларуси на реке Свислочь. Город занимает выгодное транспортное положение на пересечении путей из Москвы в Варшаву и из Киева в Вильнюс.</p>
+                <img src="https://d1.endata.cx/data/games/54632/karta.png" alt="Карта расположения Минска" class="map-image">
+                <p>Площадь города составляет 348,84 км². Минск разделён на 9 административных районов, каждый из которых имеет свои особенности и достопримечательности.</p>
+            </div>
+        </section>
+        
+        <section id="news">
+            <h2>Новости города</h2>
+            <p class="section-intro">Самые актуальные и интересные события из жизни столицы Беларуси.</p>
+            
+            <div class="news-grid">
+                <div class="news-item">
+                    <div class="news-image">
+                        <img src="https://img.belta.by/uploads/lotus/news/2020/000022_06B9AB8208CEDE0E4325853000166FD1_646076.jpg" alt="Ночной Минск">
+                    </div>
+                    <div class="news-content">
+                        <h3>Ночной Минск</h3>
+                        <p>Если вы считали, что Минск красив только днём, то вы ошибаетесь. Ночью наша прекрасная столица раскрывает свои красоты по-другому. С огромным количеством мест для посещения и ночной подсветкой вас ждёт незабываемый опыт.</p>
+                    </div>
+                </div>
+                
+                <div class="news-item">
+                    <div class="news-image">
+                        <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_6628a2071850a449f7b24b86_66a64c5a2d9b641e0b705b9d/scale_1200" alt="Метро в Минске">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">23 января 2025</div>
+                        <h3>Открытие новых станций метро</h3>
+                        <p>В Минске в прошлом году достроили новые станции метро «Аэродромная», «Неморшанский Сад», «Слуцкий Гостинец». Они относятся к третьей Зеленолуужской линии Минского метрополитена. </p>
+                    </div>
+                </div>
+                
+                <div class="news-item">
+                    <div class="news-image">
+                        <img src="https://minsknews.by/wp-content/uploads/2025/09/photo_2025-09-20_15-52-40.jpg" alt="Минск спортивный">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">20 сентября 2025</div>
+                        <h3>Белорусская фигуристка Виктория Сафонова получила путевку на зимние Олимпийские игры</h3>
+                        <p>Белорусская фигуристка Виктория Сафонова завоевала лицензию на зимние Олимпийские игры 2026 года, которые состоятся в итальянских Милане и Кортина-д’Ампеццо, сообщает корреспондент агентства «Минск-Новости» со ссылкой на пресс-службу НОК.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="current">
+            <h2>Минск сегодня</h2>
+            <p class="section-intro">Современный Минск — это динамично развивающийся мегаполис, являющийся экономическим, культурным и научным центром страны.</p>
+            
+            <div class="statistics">
+                <div class="stat-item">
+                    <div class="stat-number">2M</div>
+                    <div class="stat-desc">жителей</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">9</div>
+                    <div class="stat-desc">административных районов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">353,6</div>
+                    <div class="stat-desc">км² площадь города</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-desc">вузов</div>
+                </div>
+            </div>
+            
+            <div class="current-info">
+                <div class="info-box">
+                    <i class="fas fa-building"></i>
+                    <h3>Экономика</h3>
+                    <p>Минск производит более 30% ВВП страны. Здесь расположены крупнейшие предприятия: МАЗ, БелАЗ, МТЗ, "Горизонт", "Атлант" и многие другие.</p>
+                </div>
+                
+                <div class="info-box">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Наука и образование</h3>
+                    <p>В Минске находятся Национальная академия наук Беларуси и более 30 вузов, включая АУпПРБ, БГУ, БНТУ, БГУИР, БГЭУ, которые входят в рейтинги лучших университетов региона.</p>
+                </div>
+                
+                <div class="info-box">
+                    <i class="fas fa-subway"></i>
+                    <h3>Транспорт</h3>
+                    <p>Столица имеет развитую транспортную инфраструктуру: метрополитен с 3 линиями, сеть автобусных, троллейбусных и трамвайных маршрутов, два железнодорожных вокзала, международный аэропорт.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="extra">
+            <h2>Интересные факты</h2>
+            <p class="section-intro">Минск — город с уникальной историей и множеством интересных особенностей, которые делают его одним из самых примечательных городов Восточной Европы.</p>
+            
+            <div class="extra-content card">
+                <div class="quote">
+                    "Минск — это город, который удивляет. Его часто называют самым советским городом за пределами России, но в то же время здесь чувствуется европейский дух и стремление к современности."
+                    <div class="author">— Из путеводителя по Беларуси</div>
+                </div>
+                
+                <h3>Необычные факты о Минске:</h3>
+                <ul>
+                    <li>Минск был практически полностью разрушен во время Великой Отечественной войны и восстановлен в послевоенные годы</li>
+                    <li>Проспект Независимости в Минске — один из самых длинных в Европе (15 км) и является памятником градостроительства советской эпохи</li>
+                    <li>Минский метрополитен — единственный в Беларуси и один из самых глубоких в мире</li>
+                    <li>В Минске находится самая большая библиотека в стране — Национальная библиотека Беларуси</li>
+                    <li>Город является одним из самых "зеленых" в Европе — парки и скверы занимают более 40% его территории</li>
+                </ul>
+                
+                <h3>Фотогалерея</h3>
+                <div class="gallery">
+                    <img src="https://i.pinimg.com/736x/c8/3d/58/c83d587a1f695a631551c39d0c5e9de8.jpg" alt="Ворота Минска">
+                    <img src="https://www.visit-belarus.com/wp-content/uploads/2016/07/minsk_niamiha_street-1.jpg" alt="Кафедральный собор">
+                    <img src="https://i.ytimg.com/vi/eSRH0egoP90/maxresdefault.jpg" alt="Проспект Независимости">
+                    <img src="https://www.zastavki.com/pictures/originals/2017Cities_The_train_station_Minsk_112062_.jpg" alt="Вокзал Минска">
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <h3>Минск - столица Беларуси</h3>
+            <p>Моя версия сайта города</p>
+            <p>© 2025 Минск. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
